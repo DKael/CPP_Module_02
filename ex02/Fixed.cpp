@@ -24,7 +24,7 @@ Fixed::Fixed(const Fixed &origin)
 
 Fixed::Fixed(const int integer)
 {
-	raw_value = integer * (1 << Fixed::fractional_bits);
+	raw_value = integer << Fixed::fractional_bits;
 }
 
 Fixed::Fixed(const float float_num)
