@@ -13,8 +13,6 @@
 #include "Fixed.hpp"
 #include <iostream>
 
-std::ostream& operator<<(std::ostream& out, const Fixed &to_print);
-
 int main(void)
 {
 	Fixed a;
