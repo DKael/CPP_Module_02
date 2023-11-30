@@ -6,7 +6,7 @@
 /*   By: hyungdki <hyungdki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 10:36:28 by hyungdki          #+#    #+#             */
-/*   Updated: 2023/11/23 22:03:01 by hyungdki         ###   ########.fr       */
+/*   Updated: 2023/11/30 22:04:08 by hyungdki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int main(void)
 	Point b(10.0f,0.0f);
 	Point c(0.0f,10.0f);
 	Point chk(3.5f, 6.6f);
+	Point chk1 = chk;
+	Point chk2(3.5f, 6.0f);
 
 	std::cout << "a : " << a.getx() << ", " << a.gety() << '\n';
 	std::cout << "b : " << b.getx() << ", " << b.gety() << '\n';
@@ -28,6 +30,16 @@ int main(void)
 	std::cout << "chk : " << chk.getx() << ", " << chk.gety() << '\n';
 
 	if (bsp(a,b,c,chk) == true)
+		std::cout << "Point is inside the triangle\n";
+	else
+		std::cout << "Point isn't inside the triangle\n";
+	
+	if (bsp(a,b,c,chk1) == true)
+		std::cout << "Point is inside the triangle\n";
+	else
+		std::cout << "Point isn't inside the triangle\n";
+
+	if (bsp(a,b,c,chk2) == true)
 		std::cout << "Point is inside the triangle\n";
 	else
 		std::cout << "Point isn't inside the triangle\n";
