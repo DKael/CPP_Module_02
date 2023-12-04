@@ -6,7 +6,7 @@
 /*   By: hyungdki <hyungdki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 14:07:18 by hyungdki          #+#    #+#             */
-/*   Updated: 2023/11/23 19:11:09 by hyungdki         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:57:26 by hyungdki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,7 +152,7 @@ Fixed& Fixed::min(Fixed& op1, Fixed& op2)
 
 const Fixed& Fixed::min(const Fixed& op1, const Fixed& op2)
 {
-	return op1.raw_value > op2.raw_value ? op1 : op2;
+	return op1.raw_value > op2.raw_value ? op2 : op1;
 }
 
 Fixed& Fixed::max(Fixed& op1, Fixed& op2)

@@ -6,13 +6,13 @@
 /*   By: hyungdki <hyungdki@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/11/23 19:12:41 by hyungdki          #+#    #+#             */
-/*   Updated: 2023/11/23 19:38:37 by hyungdki         ###   ########.fr       */
+/*   Updated: 2023/12/04 11:57:58 by hyungdki         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Point.hpp"
 
-Point::Point()
+Point::Point() : x(0), y(0)
 {
 	;
 }
