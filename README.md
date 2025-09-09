@@ -19,41 +19,38 @@
 
 ### ex00 — My First Class in Orthodox Canonical Form
 * 클래스: Fixed
-  - 내부 표현: int _rawBits;
-  - 고정 소수 비트수: static const int _fractionalBits = 8; (Q8 고정소수)
+  - 내부 표현: int raw_value;
+  - 고정 소수 비트수: static const int fractional_bits = 8; (Q8 고정소수)
 * 정통 캐노니컬 폼(= Rule of Three)
   - 기본 생성자 / 복사 생성자 / 소멸자 / 대입 연산자
 * 접근자
-  - int  getRawBits() const;
-  - void setRawBits(int const raw);
+  - int getRawBits( void ) const;
+  - void setRawBits( int const raw );
 * 디버깅용 메시지(과제 main에 맞춰 생성/소멸/복사 시 로그 출력)
 
 ### ex01 — ToInt/ToFloat & Stream Insertion
 * 추가 생성자
-  - Fixed(int);  → raw = i << _fractionalBits;
-  - Fixed(float); → raw = roundf(f * (1 << _fractionalBits));
+  - Fixed(int);  → raw_value = integer << Fixed::fractional_bits;
+  - Fixed(float); → raw_value = static_cast<int>(roundf(float_num * (1 << Fixed::fractional_bits)));
 * 변환 함수
-  - float toFloat() const; → raw / 256.0f
-  - int   toInt()   const; → raw >> _fractionalBits
+  - float toFloat() const; → static_cast<float>(raw_value) / static_cast<float>(1 << Fixed::fractional_bits);
+  - int   toInt()   const; → raw_value / (1 << Fixed::fractional_bits);
 * 출력 연산자
-  - std::ostream& operator<<(std::ostream&, Fixed const&); (요구사항: 부동소수 형태로 출력)
+  - std::ostream& operator<<(std::ostream& out, const Fixed &to_print) (요구사항: 부동소수 형태로 출력)
 
 ### ex02 — Operators & min/max
 * 비교: <, >, <=, >=, ==, !=  (대개 raw 비교로 충분)
 * 산술: +, -, *, /
-  - 구현 선택지
-  - 간단: toFloat()로 변환해 부동소수 연산 후 다시 Fixed로
-  - 정밀: 64비트 중간값 사용해 정수 산술(오버플로 관리)
 * 증감:
   - 전위/후위 ++x, x++, --x, x-- (반환 타입 주의)
 * 정적/오버로드 min/max
-  - static Fixed&       min(Fixed&, Fixed&);
-  - static Fixed const& min(Fixed const&, Fixed const&); (const 오버로드)
+  - static Fixed& min(Fixed& op1, Fixed& op2);
+  - static const Fixed& min(const Fixed& op1, const Fixed& op2); (const 오버로드)
   - max도 동일 패턴
 
 ### ex03 — bsp(Point in Triangle)
 * 자료형: Point(불변 좌표, 내부적으로 Fixed)
-* 함수: bool bsp(Point const a, Point const b, Point const c, Point const p);
+* 함수: bool bsp(Point const a, Point const b, Point const c, Point const point)
 * 방법: 방향성/면적(바리센트릭) 기반 내부 판별
   - 세 변에 대한 same side 판정 또는
   - 삼각형 면적 = 부분 삼각형 면적 합(동등성, collinear 배제)
